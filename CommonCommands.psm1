@@ -21,7 +21,8 @@
 Function Convert-BodyAsHTML
 {
     # Declare function variable parameters
-    Param(
+    Param
+    (
         [parameter(Mandatory=$true)]
         [string]
         $plainTextBody
@@ -44,7 +45,8 @@ Function Convert-BodyAsHTML
 
 Function Send-EmailNotification
 {
-    Param(
+    Param
+    (
         [parameter(Mandatory=$true)]
         [string]
         $smtpServer,
@@ -65,7 +67,7 @@ Function Send-EmailNotification
         $body,
         [parameter(Mandatory=$false)]
         [string]
-        $attachmentPath
+        $attachmentPath,
         [parameter(Mandatory=$true)]
         [ValidateSet("Low","Normal","High")]
         [string]
@@ -111,7 +113,7 @@ Function Send-EmailNotification
 
 Function Get-CSVColumn
 {
-    Params
+    Param
     (
         [parameter(Mandatory=$true)]
         [string]
@@ -134,12 +136,50 @@ Function Get-CSVColumn
 
 }
 
+Function Set-Log
+{
+    Param
+    (
+        [Parameter(Mandatory=$true)]
+        [string]
+        $logPath
+    )
+
+    $now = Get-Date -Format "MM-dd-yyyy hh:mm:ss"
+    $logHeader = "[ ${now} ]                 "
+
+    if (!(Test-Path $logPath)) {
+        $logEntry = $logHeader + "[INFO] Created log file at ${logPath}"
+        Set-Content -Path $logPath -Value $logEntry
+    }
+    else {
+        $logEntry = $logHeader + "[INFO] Initialized log file at ${logPath}"
+        Add-Content -Path $logPath -Value $logEntry
+    }
+
+    $Global:logPath = $logPath
+}
+
+Function Write-Log
+{
+    Param
+    (
+    [Parameter(Mandatory=$true)]
+    [string]
+    $logEntry
+    )
+
+    $now = Get-Date -Format "MM-dd-yyyy hh:mm:ss"
+    $logHeader = "[ ${now} ]                 "
+
+    $logEntry = $logHeader + $logEntry
+    Add-Content -Path $Global:logPath -Value $logEntry
+}
+
 ##############################
 #
 # EXPORT
 #
 ##############################
 
-Export-ModuleMember -Function Convert-BodyAsHTML
-Export-ModuleMember -Function Send-EmailNotification
-Export-ModuleMember -Function Get-CSVColumn
+Export-ModuleMember -Function * -Alias *
