@@ -176,6 +176,13 @@ Function Write-Log
     Add-Content -Path $Global:logPath -Value $logEntry
 }
 
+Function UserBreak
+{
+    Write-Verbose "Press any key to continue..."
+    $x = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+    Write-Log "[INFO] User input virtual keycode "$x.VirtualKeyCode" to continue"
+}
+
 ##############################
 #
 # EXPORT
