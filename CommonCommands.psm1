@@ -176,11 +176,10 @@ Function Write-Log
     Add-Content -Path $Global:logPath -Value $logEntry
 }
 
-Function UserBreak
+Function Set-Breakpoint
 {
-    Write-Verbose "Press any key to continue..."
+    Write-Host "Press any key to continue..."
     $x = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
-    Write-Log "[INFO] User input virtual keycode "$x.VirtualKeyCode" to continue"
 }
 
 ##############################
@@ -189,4 +188,8 @@ Function UserBreak
 #
 ##############################
 
-Export-ModuleMember -Function * -Alias *
+Export-ModuleMember -Function Convert-BodyAsHTML
+Export-ModuleMember -Function Send-EmailNotification
+Export-ModuleMember -Function Set-Log
+Export-ModuleMember -Function Write-Log
+Export-ModuleMember -Function Set-Breakpoint
