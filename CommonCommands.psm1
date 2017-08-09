@@ -179,7 +179,7 @@ Function Write-Log
 Function Set-Breakpoint
 {
     Write-Host "Press any key to continue..."
-    $x = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+    [void]$host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
 }
 
 ##############################
