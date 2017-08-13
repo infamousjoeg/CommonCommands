@@ -6,6 +6,7 @@ Common commands used regularly by me.  Compiled into a PowerShell Module.
 
 ## Latest Update
 
+* Added Load-XAMLForm to allow XAML to be used for a PowerShell GUI
 * Split functions to seperate .ps1 files
 * Simplified CommonCommands.psm1
 * Updated README (duh!)
