@@ -26,13 +26,12 @@ Array of form variables found
         $parsedXML = $importedXML -replace 'mc:Ignorable="d"','' -replace "x:N",'N' -replace '^<Win.*', '<Window'
 
         [void][System.Reflection.Assembly]::LoadWithPartialName('PresentationFramework')
-        Remove-Variable $XAML
         [xml]$XAML = $parsedXML
 
         # Read the XAML
         $reader = (New-Object System.Xml.XmlNodeReader $XAML)
         try {
-            $Form = [Windows.Markup.XmlReader]::Load($reader)
+            $Form = [Windows.Markup.XamlReader]::Load($reader)
         }
         catch {
             Write-Host "Unable to load Windows.Markup.XamlReader. Double-check syntax and ensure at least .NET Framework 4.5.2 " `
@@ -40,9 +39,7 @@ Array of form variables found
         }
 
         # Set variables for each object
-        $XAML.SelectNodes("//*[@*[contains(translate(name(.),'n','N'),'Name')]]")  | ForEach-Object {
-            New-Variable  -Name $_.Name -Value $Window.FindName($_.Name) -Force
-        } 
+        $XAML.SelectNodes("//*[@Name]") | %{Set-Variable -Name "WPF$($_.Name)" -Value $Form.FindName($_.Name)}
 
         $formVariables = @()
         $formVariables = Get-Variable WPF*
