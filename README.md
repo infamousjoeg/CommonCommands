@@ -17,6 +17,7 @@ Common commands used regularly by me.  Compiled into a PowerShell Module.
 * Set-Log
 * Write-Log
 * Set-Breakpoint
+* Load-XAMLForm
 
 ### Future Update Functions
 
