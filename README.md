@@ -63,7 +63,7 @@ Get-Command -Module CommonCommands
 
 ### Load-XAMLForm
 
-The function `Load-XAMLForm` was created based on information derived from this blog post: [](https://mcpmag.com/articles/2016/04/28/building-ui-using-powershell.aspx)
+The function `Load-XAMLForm` was created based on information derived from [this blog post on mcpmag.com.](https://mcpmag.com/articles/2016/04/28/building-ui-using-powershell.aspx)
 
 The function expects a `xaml.xml` file to be located in the script's working directory that contains the XAML created from Visual Studio.
 
