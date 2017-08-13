@@ -2,14 +2,39 @@
 
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://opensource.org/licenses/mit-license.php)
 
-## Current Fucntions Included
+Common commands used regularly by me.  Compiled into a PowerShell Module.
 
-Convert-BodyAsHTML
+## Latest Update
 
-Send-EmailNotification
+* Split functions to seperate .ps1 files
+* Simplified CommonCommands.psm1
+* Updated README (duh!)
 
-Get-CSVColumn
+## Pre-Requisites
 
-Set-Log
+* PowerShell v3 or higher
 
-Write-Log
+## Usage
+
+Clone this repository into one of the directories listed as your PSMODULEPATH environment variable.
+
+Run a PowerShell console and do the following:
+
+```
+$modulePath = @(($env:PSMODULEPATH.Split(";")))
+Write-Host $modulePath[0]
+```
+
+The value of `$modulePath` is one of your recognized PowerShell Module directories.
+
+```
+cd $modulePath[0]
+git clone https://github.com/infamousjoeg/CommonCommands.git
+```
+
+That will download all the files into a "CommonCommands" directory in the proper location.
+
+```
+Import-Module CommonCommands
+Get-Command -Module CommonCommands
+```
