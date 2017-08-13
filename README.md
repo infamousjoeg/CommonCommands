@@ -10,6 +10,19 @@ Common commands used regularly by me.  Compiled into a PowerShell Module.
 * Simplified CommonCommands.psm1
 * Updated README (duh!)
 
+## Included Functions
+
+* Send-EmailNotification
+* Get-CSVColumn
+* Set-Log
+* Write-Log
+* Set-Breakpoint
+
+### Future Update Functions
+
+* Open-FileDialog
+* Save-FileDialog
+
 ## Pre-Requisites
 
 * PowerShell v3 or higher
